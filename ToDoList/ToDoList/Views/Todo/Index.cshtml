@@ -1,0 +1,54 @@
+﻿@model IEnumerable<TodoItem>
+
+@{
+    Layout = "_Layout";
+}
+
+<h1>To-Do List</h1>
+
+<a href="@Url.Action("Create")">Add New Task</a>
+
+<div>
+    <form method="get" asp-action="Index">
+        <select id="showCompleted" name="showCompleted" onchange="this.form.submit()">
+            <option value="">All</option>
+            <option value="true">Completed</option>
+            <option value="false">Not Completed</option>
+        </select>
+    </form>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@(item.IsCompleted ? "Completed" : "Not Completed")</td>
+                <td>
+                    <a href="@Url.Action("Edit", new{id = item.Id})">Edit</a>
+                    <a href="@Url.Action("Delete", new{id = item.Id})">Delete</a>
+                    <a href="@Url.Action("ChangeStatus", new{id = item.Id})">@(item.IsCompleted ? "Mark as Not Completed" : "Mark as Completed")</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var showCompleted = "@ViewBag.ShowCompleted";
+            if (showCompleted !== "") {
+                document.getElementById("showCompleted").value = showCompleted.toLowerCase();
+            }
+        });
+    </script>
+}
