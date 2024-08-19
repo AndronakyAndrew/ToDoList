@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\ToDoList",
+    "\\ToDoList\\Controllers",
+    "\\ToDoList\\Views",
+    "\\ToDoList\\Views\\Todo"
+  ],
+  "SelectedNode": "\\ToDoList\\Controllers\\TodoController.cs",
+  "PreviewInSolutionExplorer": false
+}
